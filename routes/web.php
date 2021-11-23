@@ -25,3 +25,4 @@ Route::get('/todos', [App\Http\Controllers\TodoController::class, 'index']);
 Route::get('/todos/create', [App\Http\Controllers\TodoController::class, 'create']);
 Route::post('/todos/create', [App\Http\Controllers\TodoController::class, 'store']);
 Route::get('/todos/{todo}', [App\Http\Controllers\TodoController::class, 'show']);
+Route::get('/todos/{todo}/edit', [App\Http\Controllers\TodoController::class, 'edit']);
