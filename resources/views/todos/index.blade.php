@@ -14,6 +14,7 @@
                             <th>Title</th>
                             <th>Description</th>
                             <th>Created</th>
+                            <th>Creator</th>
                             <th>Actions</th>
                         </thead>
                         <tbody>
@@ -23,6 +24,7 @@
                                     <td> {{ $todo->title }}</td>
                                     <td> {{ $todo->description }}</td>
                                     <td> {{ $todo->created_at->diffForHumans() }}</td>
+                                    <td> {{ $todo->user->name }}</td>
                                     <td>
                                         <a class="btn btn-primary" href="/todos/{{ $todo->id}}">Show</a>
                                         <a class="btn btn-success" href="/todos/{{ $todo->id}}/edit">Edit</a>
