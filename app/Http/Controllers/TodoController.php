@@ -44,4 +44,13 @@ class TodoController extends Controller
     {
         return view('todos.edit', compact('todo'));
     }
+
+    public function update(Todo $todo, Request $request)
+    {
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->save();
+
+        return redirect()->to('/todos');
+    }
 }
