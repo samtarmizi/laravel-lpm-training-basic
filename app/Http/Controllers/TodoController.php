@@ -21,4 +21,17 @@ class TodoController extends Controller
         // show create form
         return view('todos.create');
     }
+
+    public function store(Request $request)
+    {
+        // store to todos table using model
+        $todo = new Todo();
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->save();
+
+        // return todos index
+        return redirect()->to('/todos');
+
+    }
 }
