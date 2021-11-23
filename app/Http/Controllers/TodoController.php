@@ -15,4 +15,10 @@ class TodoController extends Controller
         // return to view - resources/views/todos/index.blade.php
         return view('todos.index', compact('todos'));
     }
+
+    public function create()
+    {
+        // show create form
+        return view('todos.create');
+    }
 }

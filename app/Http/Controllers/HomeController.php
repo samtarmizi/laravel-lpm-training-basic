@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // resources/views/home.blade.php
         return view('home');
     }
 }
