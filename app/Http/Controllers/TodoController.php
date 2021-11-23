@@ -53,4 +53,13 @@ class TodoController extends Controller
 
         return redirect()->to('/todos');
     }
+
+    public function delete(Todo $todo)
+    {
+        // delete from table using model
+        $todo->delete();
+
+        // return to todos index
+        return redirect()->to('/todos');
+    }
 }

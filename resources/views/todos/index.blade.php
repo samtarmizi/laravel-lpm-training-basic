@@ -26,6 +26,7 @@
                                     <td>
                                         <a class="btn btn-primary" href="/todos/{{ $todo->id}}">Show</a>
                                         <a class="btn btn-success" href="/todos/{{ $todo->id}}/edit">Edit</a>
+                                        <a onclick="return confirm('Are you sure')" class="btn btn-danger" href="/todos/{{ $todo->id}}/delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
