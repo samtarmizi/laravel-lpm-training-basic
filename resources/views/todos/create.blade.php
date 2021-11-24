@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Todos Create') }}</div>
 
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Title</label>
@@ -17,6 +17,10 @@
                         <div class="form-group">
                             <label>Description</label>
                             <textarea name="description" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Attachment</label>
+                            <input type="file" name="attachment" class="form-control" >
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Store My Todos!</button>

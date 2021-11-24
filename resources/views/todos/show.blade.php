@@ -16,6 +16,15 @@
                         <label>Description</label>
                         <textarea name="description" class="form-control" readonly>{{ $todo->description }}</textarea>
                     </div>
+
+                    @if($todo->attachment)
+                        <a
+                            target="_blank"
+                            href="{{ $todo->attachment_url }}"
+                            class="btn btn-link">
+                            Open Attachment
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

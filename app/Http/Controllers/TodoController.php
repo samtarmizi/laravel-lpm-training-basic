@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use File;
+use Storage;
 
 class TodoController extends Controller
 {
@@ -42,6 +44,18 @@ class TodoController extends Controller
         $todo->user_id = auth()->user()->id;
         $todo->save();
 
+        if($request->hasFile('attachment')){
+            // rename
+            $filename = rand(10,100).$todo->id.'-'.date("Y-m-d").'.'.$request->attachment->getClientOriginalExtension();
+
+            // store at file storage
+            Storage::disk('public')->put($filename, File::get($request->attachment));
+
+            // update row on db
+            $todo->attachment = $filename;
+            $todo->save();
+        }
+
         // return todos index
         return redirect()->to('/todos')->with([
             'type' => 'alert-primary',
@@ -74,6 +88,10 @@ class TodoController extends Controller
 
     public function delete(Todo $todo)
     {
+        if($todo->attachment){
+            Storage::disk('public')->delete($todo->attachment);
+        }
+
         // delete from table using model
         $todo->delete();
 
