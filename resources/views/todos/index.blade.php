@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if(session()->has('message'))
+                <div class="alert {{ session()->get('type') }}">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">{{ __('Todos Index') }}</div>
 
@@ -34,6 +39,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $todos->links() }}
 
                 </div>
             </div>

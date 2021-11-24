@@ -18,13 +18,10 @@ class TodoController extends Controller
     public function index()
     {
         // query list of todos from db
-        //$todos = Todo::all();
+        // $todos = Todo::paginate(3);
         $user = auth()->user();
 
-        dd($user);
-
-
-        $todos = $user->todos;
+        $todos = $user->todos()->paginate(3);
 
         // return to view - resources/views/todos/index.blade.php
         return view('todos.index', compact('todos'));
@@ -46,7 +43,10 @@ class TodoController extends Controller
         $todo->save();
 
         // return todos index
-        return redirect()->to('/todos');
+        return redirect()->to('/todos')->with([
+            'type' => 'alert-primary',
+            'message' => 'Successfuly store your todo!'
+        ]);
 
     }
 
@@ -66,7 +66,10 @@ class TodoController extends Controller
         $todo->description = $request->description;
         $todo->save();
 
-        return redirect()->to('/todos');
+        return redirect()->to('/todos')->with([
+            'type' => 'alert-success',
+            'message' => 'Successfuly update your todo!'
+        ]);
     }
 
     public function delete(Todo $todo)
@@ -75,6 +78,9 @@ class TodoController extends Controller
         $todo->delete();
 
         // return to todos index
-        return redirect()->to('/todos');
+        return redirect()->to('/todos')->with([
+            'type' => 'alert-danger',
+            'message' => 'Successfuly delete your todo!'
+        ]);
     }
 }
