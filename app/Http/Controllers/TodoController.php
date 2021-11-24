@@ -15,17 +15,18 @@ class TodoController extends Controller
         $this->middleware('auth');
     }
 
-
-
-    public function index()
+    public function index(Request $request)
     {
-        // query list of todos from db
-        // $todos = Todo::paginate(3);
-        $user = auth()->user();
+        if($request->keyword){
+            $user = auth()->user();
+            $todos = $user->todos()
+                        ->where('title','LIKE','%'.$request->keyword.'%')
+                        ->paginate(3);
+        }else{
+            $user = auth()->user();
+            $todos = $user->todos()->paginate(3);
+        }
 
-        $todos = $user->todos()->paginate(3);
-
-        // return to view - resources/views/todos/index.blade.php
         return view('todos.index', compact('todos'));
     }
 
